@@ -22,7 +22,10 @@ module.exports = {
 
   // Base config
   extends: ["eslint:recommended"],
-
+  rules: {
+    "semi": ["error", "always"],
+    "indent": ["error", 2]
+  },
   overrides: [
     // React
     {

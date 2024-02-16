@@ -40,10 +40,10 @@ export interface PackageResponse {
 	help: string;
 	success: boolean;
 	result: {
-		count: number;
-		facets: unknown;
+    count: number;
+    facets: unknown;
     results: PackageMetadata[];
     sort: string;
-		search_facets: unknown;
+    search_facets: unknown;
   }
 }
