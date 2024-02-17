@@ -33,7 +33,12 @@ export default function DatasetResources({ resources }: { resources: PackageReso
               {resource.language.join(', ')}
             </td>
             <td className="p-2">
-              <a href={resource.url} target="_blank" rel="noreferrer">
+              <a
+                href={resource.url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-600"
+              >
                 link
               </a>
             </td>

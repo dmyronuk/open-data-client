@@ -5,12 +5,13 @@ export async function fetchPackages({
   rows = 10,
   start = 0,
   q = '',
-  sort = 'date_published desc'
+  sort = 'date_modified',
+  sortDir = 'desc'
 }): Promise<PackageResponse> {
   const params = new URLSearchParams({
     rows: `${rows}`,
     start: `${start}`,
-    sort
+    sort: `${sort} ${sortDir}`
   });
 
   if(q) {

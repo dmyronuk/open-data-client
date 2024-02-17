@@ -21,7 +21,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const data = await fetchPackages({
     q: url.searchParams.get('q') ?? '',
     rows: pageParams.limit,
-    start: getPageStart(pageParams)
+    start: getPageStart(pageParams),
+    sort: url.searchParams.get('sort') ?? undefined
   });
   return json({ ...pageParams, data });
 };
@@ -47,22 +48,29 @@ export default function Index() {
   console.log(data);
 
   return (
-    <div className="w-100 grid xs:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
-      <div className="col-span-1">
-        <div className="sticky top-4">
-          <SearchForm />
+    <div className="flex justify-center">
+      <div className="w-100 max-w-screen-xl grid xs:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+        <div className="col-span-1">
+          <div className="sticky top-4">
+            <SearchForm />
+          </div>
         </div>
-      </div>
-      <div className="xs:col-span-1 lg:col-span-3 flex flex-col gap-3">
-        <Paginator
-          isLoading={false}
-          page={page}
-          totalPages={data.result.count}
-          onChange={handlePageChange}
-        />
-        {data.result.results.map((dataset) => (
-          <DatasetCard key={dataset.id} dataset={dataset as PackageMetadata} />
-        ))}
+        <div className="xs:col-span-1 lg:col-span-3 flex flex-col gap-3">
+          <div className="flex justify-between items-center">
+            <div>
+              {data.result.count} Results
+            </div>
+            <Paginator
+              isLoading={false}
+              page={page}
+              totalPages={data.result.count}
+              onChange={handlePageChange}
+            />
+          </div>
+          {data.result.results.map((dataset) => (
+            <DatasetCard key={dataset.id} dataset={dataset as PackageMetadata} />
+          ))}
+        </div>
       </div>
     </div>
   );

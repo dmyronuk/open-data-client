@@ -18,10 +18,10 @@ export default function Paginator({ isLoading, page, totalPages, onChange }: Pag
 
   return (
     <div className="flex gap-2">
-      <Button disabled={page < 1 || isLoading} onClick={handlePrev}>
+      <Button disabled={page <= 1 || isLoading} onClick={handlePrev}>
         Prev
       </Button>
-      <Button>{page}</Button>
+      <Button>Page {page}</Button>
       <Button disabled={page >= totalPages || isLoading} onClick={handleNext}>
         Next
       </Button>
