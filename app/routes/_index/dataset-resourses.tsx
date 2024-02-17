@@ -37,7 +37,7 @@ export default function DatasetResources({ resources }: { resources: PackageReso
                 href={resource.url}
                 target="_blank"
                 rel="noreferrer"
-                className="text-blue-600"
+                className="text-blue-700"
               >
                 link
               </a>

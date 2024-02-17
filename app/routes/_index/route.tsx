@@ -63,7 +63,8 @@ export default function Index() {
             <Paginator
               isLoading={false}
               page={page}
-              totalPages={data.result.count}
+              pageSize={limit}
+              resultCount={data.result.count}
               onChange={handlePageChange}
             />
           </div>

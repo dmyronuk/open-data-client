@@ -3,11 +3,14 @@ import Button from './button';
 interface PaginatorProps {
   isLoading: boolean;
   page: number;
-  totalPages: number;
+  pageSize: number;
+  resultCount: number;
   onChange: ({ nextPage }: { nextPage: number }) => void;
 }
 
-export default function Paginator({ isLoading, page, totalPages, onChange }: PaginatorProps) {
+export default function Paginator({ isLoading, page, resultCount, pageSize, onChange }: PaginatorProps) {
+  const totalPages = Math.ceil(resultCount / pageSize);
+
   const handlePrev = () => {
     onChange({ nextPage: page - 1 });
   };
@@ -17,11 +20,13 @@ export default function Paginator({ isLoading, page, totalPages, onChange }: Pag
   };
 
   return (
-    <div className="flex gap-2">
+    <div className="flex items-center gap-2">
+      <div>
+        Page {page}
+      </div>
       <Button disabled={page <= 1 || isLoading} onClick={handlePrev}>
         Prev
       </Button>
-      <Button>Page {page}</Button>
       <Button disabled={page >= totalPages || isLoading} onClick={handleNext}>
         Next
       </Button>
