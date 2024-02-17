@@ -13,7 +13,7 @@ export default function SearchForm() {
   };
 
   return (
-    <div className="w-full p-4 border border-slate-200 rounded">
+    <div className="w-full h-full p-4 border border-slate-200 rounded bg-white">
       <Input
         label="search"
         inputProps={{

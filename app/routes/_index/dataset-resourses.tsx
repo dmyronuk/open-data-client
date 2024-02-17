@@ -1,27 +1,45 @@
-import { Fragment } from "react";
 import type { PackageResource } from "~/types";
 
 export default function DatasetResources({ resources }: { resources: PackageResource[] }) {
   const lang = 'en';
 
   return (
-    <div className="grid grid-cols-5">
-      <div>name</div>
-      <div>type</div>
-      <div>format</div>
-      <div>language</div>
-      <div>link</div>
-      {resources.map((resource) => (
-        <Fragment key={resource.id}>
-          <div>{resource.name_translated[lang] ?? ''}</div>
-          <div>{resource.format}</div>
-          <div>{resource.resource_type}</div>
-          <div>{resource.language}</div>
-          <a href={resource.url} target="_blank" rel="noreferrer">
-            link
-          </a>
-        </Fragment>
-      ))}
-    </div>
+    <table>
+      <thead>
+        <tr className="text-sm font-medium">
+          <td className="p-2">Name</td>
+          <td className="p-2">Type</td>
+          <td className="p-2">Format</td>
+          <td className="p-2">Language</td>
+          <td className="p-2">Link</td>
+        </tr>
+      </thead>
+      <tbody>
+        {resources.map((resource) => (
+          <tr
+            key={resource.id}
+            className="border-t border-slate-200 text-gray-500"
+          >
+            <td className="p-2 text-black">
+              {resource.name_translated[lang] ?? ''}
+            </td>
+            <td className="p-2">
+              {resource.resource_type}
+            </td>
+            <td className="p-2">
+              {resource.format}
+            </td>
+            <td className="p-2">
+              {resource.language.join(', ')}
+            </td>
+            <td className="p-2">
+              <a href={resource.url} target="_blank" rel="noreferrer">
+                link
+              </a>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }

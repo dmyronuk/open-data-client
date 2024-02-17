@@ -7,6 +7,8 @@ export default function DatasetCard({ dataset }: { dataset: PackageMetadata }) {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const lang = 'en';
   const keywords = dataset.keywords[lang] ?? [];
+  const dateFormatted = new Intl.DateTimeFormat('en-US', { year: "numeric", month: "long", day: "numeric" })
+    .format(new Date(dataset.date_published));
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
@@ -19,7 +21,7 @@ export default function DatasetCard({ dataset }: { dataset: PackageMetadata }) {
           {dataset.title}
         </h6>
         <div className="whitespace-nowrap">
-          {dataset.date_published}
+          {dateFormatted}
         </div>
       </div>
       <div className="flex flex-wrap gap-1">

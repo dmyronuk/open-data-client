@@ -44,14 +44,16 @@ export default function Index() {
     );
   }
 
+  console.log(data);
+
   return (
-    <div className="w-100 grid xs:grid-cols-2 md:grid-cols-4 gap-4 p-4">
+    <div className="w-100 grid xs:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
       <div className="col-span-1">
         <div className="sticky top-4">
           <SearchForm />
         </div>
       </div>
-      <div className="xs:col-span-1 md:col-span-3 flex flex-col gap-3">
+      <div className="xs:col-span-1 lg:col-span-3 flex flex-col gap-3">
         <Paginator
           isLoading={false}
           page={page}

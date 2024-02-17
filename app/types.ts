@@ -36,6 +36,7 @@ export interface PackageMetadata {
   association_type: unknown[];
   author: string | null;
   author_email: string;
+  collection: string;
   contributor: { [lang: string]: string };
   creator: string;
   creator_user_id: string;
@@ -66,8 +67,10 @@ export interface PackageMetadata {
   metadata_modified: string;
   notes_translated: { [lang: string]: string };
   ready_to_publish: string;
-  resources: PackageResource[];
   relationships_as_object: unknown[];
+  relationships_as_subject: unknown[];
+  resources: PackageResource[];
+  restrictions: string;
   revision_id: string;
   subject: string[];
   spatial_representation_type: unknown[];
