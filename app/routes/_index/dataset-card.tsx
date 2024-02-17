@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PackageMetadata } from "~/types";
-import DatasetResources from "./DatasetResourses";
-import Pill from "./Pill";
+import Pill from "~/components/pill";
+import DatasetResources from "./dataset-resourses";
 
 export default function DatasetCard({ dataset }: { dataset: PackageMetadata }) {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -13,7 +13,7 @@ export default function DatasetCard({ dataset }: { dataset: PackageMetadata }) {
   };
 
   return (
-    <div className="flex flex-col gap-1 shadow border border rounded p-2 bg-white">
+    <div className="flex flex-col gap-1 shadow border border rounded p-4 bg-white">
       <div className="flex gap-2 justify-between">
         <h6 className="text-lg font-medium">
           {dataset.title}

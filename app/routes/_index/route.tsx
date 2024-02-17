@@ -1,13 +1,12 @@
 import { json } from "@remix-run/node";
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { useLoaderData, useSearchParams } from "@remix-run/react";
-import { ChangeEvent } from "react";
 import { fetchPackages } from "~/api/openDataAPI";
-import DatasetCard from "~/components/DatasetCard";
-import Input from "~/components/Input";
-import Paginator from "~/components/Paginator";
+import Paginator from "~/components/paginator";
 import type { PackageMetadata } from "~/types";
 import { getPageParams, getPageStart } from "~/util/paging";
+import DatasetCard from "./dataset-card";
+import SearchForm from "./search-form";
 
 export const meta: MetaFunction = () => {
   return [
@@ -31,13 +30,6 @@ export default function Index() {
   const [_, setSearchParams] = useSearchParams();
   const { data, page, limit } = useLoaderData<typeof loader>();
 
-  const handleQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchParams((prev) => {
-      prev.set("q", event.target.value);
-      return prev;
-    });
-  };
-
   const handlePageChange = ({ nextPage }: { nextPage: number }) => {
     setSearchParams((prev) => {
       prev.set("limit", limit.toString());
@@ -53,9 +45,13 @@ export default function Index() {
   }
 
   return (
-    <div className="w-100 flex flex-col items-center p-4">
-      <div className="max-w-screen-md flex flex-col gap-3">
-        <Input name="search" onChange={handleQueryChange} />
+    <div className="w-100 grid xs:grid-cols-2 md:grid-cols-4 gap-4 p-4">
+      <div className="col-span-1">
+        <div className="sticky top-4">
+          <SearchForm />
+        </div>
+      </div>
+      <div className="xs:col-span-1 md:col-span-3 flex flex-col gap-3">
         <Paginator
           isLoading={false}
           page={page}
@@ -67,6 +63,5 @@ export default function Index() {
         ))}
       </div>
     </div>
-
   );
 }
