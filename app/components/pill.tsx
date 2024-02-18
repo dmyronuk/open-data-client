@@ -5,7 +5,7 @@ type PillProps = Pick<HTMLAttributes<HTMLDivElement>, 'className'> & { text: str
 
 export default function Pill({ className, text }: PillProps) {
   return (
-    <div className={`px-2 py-1 border border-green-400 bg-green-300 rounded text-sm ${className}`}>
+    <div className={`px-2 py-1 border border-slate-300 bg-slate-100 rounded text-sm text-slate-600 ${className}`}>
       {text}
     </div>
   );

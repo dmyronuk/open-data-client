@@ -20,6 +20,7 @@ interface SearchFormProps {
 
 export default function SearchForm({ searchTerm, limit, sort }: SearchFormProps) {
   const navigation = useNavigation();
+  console.log('nav state', navigation.state);
 
   return (
     <Form
@@ -64,7 +65,7 @@ export default function SearchForm({ searchTerm, limit, sort }: SearchFormProps)
       </Select>
       <Button
         className="mt-3"
-        disabled={navigation.state === 'submitting'}
+        isLoading={navigation.state === 'loading'}
         type="submit"
       >
         Submit

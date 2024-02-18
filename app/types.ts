@@ -56,9 +56,11 @@ export interface PackageMetadata {
   license_url: string;
   maintainer: null;
   maintainer_email: string;
+  notes: string;
   num_resources: number;
   num_tags: 0;
   org_section: { [lang: string]: string };
+  org_title_at_publication: { [lang: string]: string };
   position_name: unknown;
   portal_release_date: string;
   place_of_publication: string[];
