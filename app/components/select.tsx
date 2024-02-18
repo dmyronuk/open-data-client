@@ -1,26 +1,12 @@
 import { SelectHTMLAttributes, PropsWithChildren } from "react";
 
-interface SelectProps {
-  label: string;
-  selectProps: SelectHTMLAttributes<HTMLSelectElement>;
-}
-
-export default function Select({ children, ...props }: PropsWithChildren<SelectProps>) {
+export default function Select({ children, className = '', ...props }: PropsWithChildren<SelectHTMLAttributes<HTMLSelectElement>>) {
   return (
-    <div>
-      <label
-        htmlFor={props.selectProps.name}
-        className="block text-sm font-medium leading-6 text-gray-900"
-      >
-        {props.label}
-      </label>
-      <select
-        {...props.selectProps}
-        className="w-full p-2 bg-slate-100 border border-slate-200 rounded"
-      >
-        {children}
-      </select>
-    </div>
-
+    <select
+      {...props}
+      className={`w-full p-2 bg-slate-100 border border-slate-200 rounded ${className}`}
+    >
+      {children}
+    </select>
   );
 }

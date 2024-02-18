@@ -1,6 +1,7 @@
-import { ChangeEvent } from "react";
-import { useSearchParams } from "@remix-run/react";
+import { Form, useNavigation } from "@remix-run/react";
+import Button from '~/components/button';
 import Input from "~/components/input";
+import Label from "~/components/label";
 import Select from "~/components/select";
 
 const SORT_OPTIONS = [
@@ -9,62 +10,65 @@ const SORT_OPTIONS = [
   { value: 'score', label: 'Score' }
 ];
 
-export default function SearchForm() {
-  const [_, setSearchParams] = useSearchParams();
+const LIMIT_OPTIONS = [10, 50, 100];
 
-  const handleQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchParams((prev) => {
-      prev.set("q", event.target.value);
-      return prev;
-    });
-  };
+interface SearchFormProps {
+  searchTerm: string;
+  limit: number;
+  sort: string;
+}
 
-  const handleLimitChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSearchParams((prev) => {
-      prev.set("limit", event.target.value);
-      return prev;
-    });
-  };
-
-  const handleSortChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSearchParams((prev) => {
-      prev.set("sort", event.target.value);
-      return prev;
-    });
-  };
+export default function SearchForm({ searchTerm, limit, sort }: SearchFormProps) {
+  const navigation = useNavigation();
 
   return (
-    <div className="w-full h-full flex flex-col gap-4 p-4 border border-slate-200 rounded bg-white">
+    <Form
+      action='/'
+      className="w-full h-full flex flex-col p-4 border border-slate-200 rounded bg-white"
+      id="query-form"
+      method="GET"
+      role="search"
+    >
+      <Label htmlFor="q">
+        Search Term
+      </Label>
       <Input
-        label="Search Term"
-        inputProps={{
-          autoFocus: true,
-          name: "search",
-          onChange: handleQueryChange
-        }}
+        className="mb-3"
+        defaultValue={searchTerm}
+        id="search-term"
+        name="q"
       />
+      <Label htmlFor="limit">
+        Limit
+      </Label>
       <Select
-        label="Limit"
-        selectProps={{
-          name: "Limit",
-          onChange: handleLimitChange
-        }}
+        className="mb-3"
+        defaultValue={limit}
+        name="limit"
       >
-        <option value={10}>10</option>
-        <option value={50}>50</option>
-        <option value={100}>100</option>
+        {LIMIT_OPTIONS.map(opt => (
+          <option key={opt} value={opt}>{opt}</option>
+        ))}
       </Select>
+      <Label htmlFor="sort">
+        Sort
+      </Label>
       <Select
-        label="Sort"
-        selectProps={{
-          name: "Sort",
-          onChange: handleSortChange
-        }}
+        className="mb-3"
+        defaultValue={sort}
+        name="sort"
       >
         {SORT_OPTIONS.map(opt => (
           <option key={opt.value} value={opt.value}>{opt.label}</option>
         ))}
       </Select>
-    </div>
+      <Button
+        className="mt-3"
+        disabled={navigation.state === 'submitting'}
+        type="submit"
+      >
+        Submit
+      </Button>
+    </Form>
   );
 }

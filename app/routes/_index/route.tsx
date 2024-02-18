@@ -17,19 +17,22 @@ export const meta: MetaFunction = () => {
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
+  const sort = url.searchParams.get('sort') ?? 'date_modified';
+  const q = url.searchParams.get('q') ?? '';
   const pageParams = getPageParams(url) ?? { page: 1, limit: 10 };
+
   const data = await fetchPackages({
-    q: url.searchParams.get('q') ?? '',
+    q,
+    sort,
     rows: pageParams.limit,
     start: getPageStart(pageParams),
-    sort: url.searchParams.get('sort') ?? undefined
   });
-  return json({ ...pageParams, data });
+  return json({ ...pageParams, q, sort, data });
 };
 
 export default function Index() {
   const [_, setSearchParams] = useSearchParams();
-  const { data, page, limit } = useLoaderData<typeof loader>();
+  const { data, page, limit, q, sort } = useLoaderData<typeof loader>();
 
   const handlePageChange = ({ nextPage }: { nextPage: number }) => {
     setSearchParams((prev) => {
@@ -52,7 +55,11 @@ export default function Index() {
       <div className="w-100 max-w-screen-xl grid xs:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
         <div className="col-span-1">
           <div className="sticky top-4">
-            <SearchForm />
+            <SearchForm
+              searchTerm={q}
+              limit={limit}
+              sort={sort}
+            />
           </div>
         </div>
         <div className="xs:col-span-1 lg:col-span-3 flex flex-col gap-3">
