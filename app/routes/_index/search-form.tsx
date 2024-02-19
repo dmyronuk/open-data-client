@@ -7,7 +7,7 @@ import Select from "~/components/select";
 const SORT_OPTIONS = [
   { value: 'date_modified', label: 'Modified' },
   { value: 'date_published', label: 'Published' },
-  { value: 'score', label: 'Score' }
+  { value: 'score', label: 'Best Match' }
 ];
 
 const LIMIT_OPTIONS = [10, 50, 100];
@@ -20,7 +20,6 @@ interface SearchFormProps {
 
 export default function SearchForm({ searchTerm, limit, sort }: SearchFormProps) {
   const navigation = useNavigation();
-  console.log('nav state', navigation.state);
 
   return (
     <Form
@@ -31,7 +30,7 @@ export default function SearchForm({ searchTerm, limit, sort }: SearchFormProps)
       role="search"
     >
       <Label htmlFor="q">
-        Search Term
+        Query
       </Label>
       <Input
         className="mb-3"

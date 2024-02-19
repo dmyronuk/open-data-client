@@ -6,7 +6,7 @@ export default function DatasetResources({ resources }: { resources: PackageReso
   return (
     <table>
       <thead>
-        <tr className="text-sm font-medium">
+        <tr className="border-bottom border-gray-100 text-sm font-medium">
           <td className="p-2">Name</td>
           <td className="p-2">Type</td>
           <td className="p-2">Format</td>
@@ -15,10 +15,10 @@ export default function DatasetResources({ resources }: { resources: PackageReso
         </tr>
       </thead>
       <tbody>
-        {resources.map((resource) => (
+        {resources.map((resource, i) => (
           <tr
             key={resource.id}
-            className="border-t border-slate-200 text-gray-500"
+            className={`border-t border-gray-200 text-gray-500 ${i % 2 === 0 ? 'bg-gray-50': ''}`}
           >
             <td className="p-2 text-black">
               {resource.name_translated[lang] ?? ''}

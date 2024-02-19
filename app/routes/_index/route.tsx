@@ -33,6 +33,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export default function Index() {
   const [_, setSearchParams] = useSearchParams();
   const { data, page, limit, q, sort } = useLoaderData<typeof loader>();
+  const resultCount = data.success ? data.result.count : 0;
 
   const handlePageChange = ({ nextPage }: { nextPage: number }) => {
     setSearchParams((prev) => {
@@ -41,14 +42,6 @@ export default function Index() {
       return prev;
     });
   };
-
-  if (!data.success) {
-    return (
-      <div>Error: {data.error.message}</div>
-    );
-  }
-
-  console.log(data);
 
   return (
     <div className="flex justify-center">
@@ -65,19 +58,27 @@ export default function Index() {
         <div className="xs:col-span-1 lg:col-span-3 flex flex-col gap-3">
           <div className="flex justify-between items-center">
             <div>
-              {data.result.count} Results
+              {new Intl.NumberFormat("en-US").format(resultCount)} Results
             </div>
             <Paginator
               isLoading={false}
               page={page}
               pageSize={limit}
-              resultCount={data.result.count}
+              resultCount={resultCount}
               onChange={handlePageChange}
             />
           </div>
-          {data.result.results.map((dataset) => (
-            <DatasetCard key={dataset.id} dataset={dataset as PackageMetadata} />
-          ))}
+          {data.success ? (
+            data.result.results.map((dataset) => (
+              <DatasetCard key={dataset.id} dataset={dataset as PackageMetadata} />
+            ))
+          ) : (
+            <div>
+              <p className="text-lg">
+                Error: {data.error.message}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
