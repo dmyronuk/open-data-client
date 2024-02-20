@@ -1,13 +1,13 @@
 import { Form, useNavigation } from "@remix-run/react";
-import Button from '~/components/button';
+import Button from "~/components/button";
 import Input from "~/components/input";
 import Label from "~/components/label";
 import Select from "~/components/select";
 
 const SORT_OPTIONS = [
-  { value: 'date_modified', label: 'Modified' },
-  { value: 'date_published', label: 'Published' },
-  { value: 'score', label: 'Best Match' }
+  { value: "date_modified", label: "Modified" },
+  { value: "date_published", label: "Published" },
+  { value: "score", label: "Best Match" }
 ];
 
 const LIMIT_OPTIONS = [10, 50, 100];
@@ -64,7 +64,7 @@ export default function SearchForm({ searchTerm, limit, sort }: SearchFormProps)
       </Select>
       <Button
         className="mt-3"
-        isLoading={navigation.state === 'loading'}
+        isLoading={navigation.state === "loading"}
         type="submit"
       >
         Submit

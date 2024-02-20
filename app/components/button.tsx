@@ -5,7 +5,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & { isLoading?: boole
 
 export default function Button({
   children,
-  className = '',
+  className = "",
   isLoading = false,
   ...props
 }: PropsWithChildren<ButtonProps>) {

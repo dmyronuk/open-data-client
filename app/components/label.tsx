@@ -1,6 +1,6 @@
 import { LabelHTMLAttributes, PropsWithChildren } from "react";
 
-export default function Label({ children, className = '', ...props }: PropsWithChildren<LabelHTMLAttributes<HTMLLabelElement>>) {
+export default function Label({ children, className = "", ...props }: PropsWithChildren<LabelHTMLAttributes<HTMLLabelElement>>) {
   return (
     <label
       {...props}

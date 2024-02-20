@@ -1,6 +1,6 @@
 import { SelectHTMLAttributes, PropsWithChildren } from "react";
 
-export default function Select({ children, className = '', ...props }: PropsWithChildren<SelectHTMLAttributes<HTMLSelectElement>>) {
+export default function Select({ children, className = "", ...props }: PropsWithChildren<SelectHTMLAttributes<HTMLSelectElement>>) {
   return (
     <select
       {...props}

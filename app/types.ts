@@ -27,7 +27,7 @@ export interface PackageResource {
   url_type: string;
   validation_options: {
     row_limit: string; // numeric string eg '100'
-  },
+  };
   validation_status: string;
   validation_timestamp: string;
 }
@@ -50,7 +50,7 @@ export interface PackageMetadata {
   id: string;
   isopen: boolean;
   imso_approval: string;
-  jurisdiction: string,
+  jurisdiction: string;
   keywords:  { [lang: string]: string[] };
   license_id: string;
   license_url: string;
@@ -64,7 +64,7 @@ export interface PackageMetadata {
   position_name: unknown;
   portal_release_date: string;
   place_of_publication: string[];
-  private: boolean,
+  private: boolean;
   metadata_created: string;
   metadata_modified: string;
   notes_translated: { [lang: string]: string };
@@ -86,15 +86,15 @@ export interface PackageMetadata {
 }
 
 export interface PackageSuccessResponse {
-	help: string;
-	success: true;
-	result: {
+  help: string;
+  success: true;
+  result: {
     count: number;
     facets: unknown;
     results: PackageMetadata[];
     sort: string;
     search_facets: unknown;
-  }
+  };
 }
 
 export interface PackageErrorResponse {
@@ -102,8 +102,8 @@ export interface PackageErrorResponse {
     message: string;
     __type: string;
   };
-	help: string;
-	success: false
+  help: string;
+  success: false;
 }
 
 export type PackageResponse = PackageSuccessResponse | PackageErrorResponse;

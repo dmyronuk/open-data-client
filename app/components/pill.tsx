@@ -1,7 +1,7 @@
 
 import { HTMLAttributes } from "react";
 
-type PillProps = Pick<HTMLAttributes<HTMLDivElement>, 'className'> & { text: string }
+type PillProps = Pick<HTMLAttributes<HTMLDivElement>, "className"> & { text: string }
 
 export default function Pill({ className, text }: PillProps) {
   return (

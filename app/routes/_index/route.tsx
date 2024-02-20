@@ -17,8 +17,8 @@ export const meta: MetaFunction = () => {
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
-  const sort = url.searchParams.get('sort') ?? 'date_modified';
-  const q = url.searchParams.get('q') ?? '';
+  const sort = url.searchParams.get("sort") ?? "date_modified";
+  const q = url.searchParams.get("q") ?? "";
   const pageParams = getPageParams(url) ?? { page: 1, limit: 10 };
 
   const data = await fetchPackages({

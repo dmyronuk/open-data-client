@@ -1,4 +1,4 @@
-export function getPageParams(url: URL): { page: number, limit: number } {
+export function getPageParams(url: URL): { page: number; limit: number } {
   const page = parseInt(url.searchParams.get("page") as string);
   const limit = parseInt(url.searchParams.get("limit") as string);
   return {

@@ -1,7 +1,7 @@
 import type { PackageResource } from "~/types";
 
 export default function DatasetResources({ resources }: { resources: PackageResource[] }) {
-  const lang = 'en';
+  const lang = "en";
 
   return (
     <table>
@@ -18,10 +18,10 @@ export default function DatasetResources({ resources }: { resources: PackageReso
         {resources.map((resource, i) => (
           <tr
             key={resource.id}
-            className={`border-t border-gray-200 text-gray-500 ${i % 2 === 0 ? 'bg-gray-50': ''}`}
+            className={`border-t border-gray-200 text-gray-500 ${i % 2 === 0 ? "bg-gray-50": ""}`}
           >
             <td className="p-2 text-black">
-              {resource.name_translated[lang] ?? ''}
+              {resource.name_translated[lang] ?? ""}
             </td>
             <td className="p-2">
               {resource.resource_type}
@@ -30,7 +30,7 @@ export default function DatasetResources({ resources }: { resources: PackageReso
               {resource.format}
             </td>
             <td className="p-2">
-              {resource.language.join(', ')}
+              {resource.language.join(", ")}
             </td>
             <td className="p-2">
               <a

@@ -7,7 +7,7 @@ import { defaultDateFormat } from "~/util/dates";
 
 export default function DatasetCard({ dataset }: { dataset: PackageMetadata }) {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  const lang = 'en';
+  const lang = "en";
   const keywords = dataset.keywords[lang] ?? [];
 
   const toggleExpanded = () => {
@@ -48,7 +48,7 @@ export default function DatasetCard({ dataset }: { dataset: PackageMetadata }) {
           <TextButton
             onClick={toggleExpanded}
           >
-            {isExpanded ? 'Hide Resources' : 'Show Resources'}
+            {isExpanded ? "Hide Resources" : "Show Resources"}
           </TextButton>
         </div>
       </div>

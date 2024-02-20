@@ -18,7 +18,7 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: tailwind }
 ];
 
-export function Document({ title = 'Open Data Search', children }: PropsWithChildren<{ title?: string }>) {
+export function Document({ title = "Open Data Search", children }: PropsWithChildren<{ title?: string }>) {
   return (
     <html lang="en">
       <head>
@@ -54,7 +54,7 @@ export function ErrorBoundary() {
         ) : (
           <div>
             <h1>Uh oh. Something went wrong.</h1>
-            <p>{(error as Error).message ?? 'Unknown error'}</p>
+            <p>{(error as Error).message ?? "Unknown error"}</p>
           </div>
         )}
       </div>
